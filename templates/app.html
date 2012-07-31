@@ -45,8 +45,10 @@ $def with (endpoint, app_name)
     </div>
     <script type="text/javascript">
 
-      $(function() {
-        $.ajax({
+      jq = jQuery;
+
+      jq(function() {
+        jq.ajax({
           url: '$endpoint/api/app/short_name=$app_name',
           dataType: 'jsonp'
           success: function(data) {
