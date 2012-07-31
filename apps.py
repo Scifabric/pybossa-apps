@@ -26,6 +26,7 @@ class hello:
 
 class app_index:
     def GET(self, app_name):
+        global endpoint
         return render.app(endpoint, app_name)
 
 
