@@ -1,6 +1,60 @@
-$def with (app_name)
-<html>
-<body>
-<h1>$app_name</h1>
-</body>
+$def with (endpoint, app_name)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PyBossa - ...">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- our styles -->
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="/static/vendor/bootstrap/2.0.4/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/vendor/bootstrap/2.0.4/bootstrap-responsive.min.css">
+    <!-- FontAwesome goodies -->
+    <link rel="stylesheet" href="/static/vendor/fontawesome/css/font-awesome.css">
+
+    <!-- Le javascript -->
+    <script type="text/javascript" src="/static/vendor/jquery.js"></script>
+    <script type="text/javascript" src="/static/vendor/bootstrap/2.0.4/bootstrap.js"></script>
+ </head>
+
+  <body>
+    <div class="container">
+      <div class="row"><div class="span8 offset2">
+        <div style="text-align:center" class="loading">loading..</div>
+        <div class="hero-unit" display="none">
+          <h1 class="app-title"></h1>
+
+          <p class="app-short-desc"></p>
+
+          <div class="app-long-desc">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+
+      $(function() {
+        $.ajax({
+          url: '$endpoint/api/app/short_name=$app_name',
+          dataType: 'jsonp'
+          success: function(data) {
+            console.log(data);
+          }
+        })
+      });
+
+    </script>
+  </body>
 </html>
