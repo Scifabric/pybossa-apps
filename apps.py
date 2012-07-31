@@ -2,7 +2,7 @@
 
 import web
 
-endpoint = 'http://pybossa.vis4.net/'
+endpoint = 'http://pybossa.vis4.net'  # no trailing slash
 
 urls = (
   '/', 'hello',

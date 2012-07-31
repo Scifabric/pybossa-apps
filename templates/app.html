@@ -42,18 +42,13 @@ $def with (endpoint, app_name)
     </div>
     <script type="text/javascript">
 
-      jq = jQuery;
-
-      jq(function() {
-        jq.ajax({
-          url: '$endpoint/api/app/short_name=$app_name',
-          dataType: 'jsonp'
-          success: function(data) {
-            console.log(data);
-          }
-        })
-      });
+      window.pybossa_apps = {
+        endpoint: "$endpoint",
+        app_name: "$app_name",
+        view: "app"
+      };
 
     </script>
+    <script type="text/javascript" src="/static/js/pybossa-apps.js"></script>
   </body>
 </html>
