@@ -21,6 +21,25 @@
         });
     }
 
+    function _solve_task(id, answer, callback) {
+        _load_app(id, function(task) {
+            $.ajax({
+                url: global.endpoint + '/api/taskrun',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: {
+                    app_id: task.app_id,
+                    task_id: task.id,
+                    info: answer
+                },
+                success: function(data) {
+                    callback(data);
+                }
+            });
+        });
+    }
+
     function _set_footer(app) {
         if (app.info.footer) {
             $('body').append('<div class="container footer"><div class="row">'+
@@ -74,5 +93,10 @@
         else if (global.view == 'newtask') newtask();
         else if (global.view == 'task') task();
     });
+
+    /* public api */
+    global.saveTask = function(task_id, answer, callback) {
+        _solve_task(task_id, answer, callback);
+    };
 
 } ( window.pybossa_apps, jQuery ));
