@@ -21,6 +21,14 @@
         });
     }
 
+    function _set_footer(app) {
+        if (app.info.footer) {
+            $('body').append('<div class="container footer"><div class="row">'+
+                '<div class="span12 content">'+app.info.footer+'</div>'+
+                '</div></div>');
+        }
+    }
+
     function app() {
         _load_app(function(app) {
             $('.loading').hide();
@@ -31,6 +39,8 @@
             $('.app-long-description').html(app.long_description);
             $('.solve-tasks').attr('href', '/'+global.app_name+'/newtask');
             $('.solve-tasks').html(app.info && app.info.engage_text ? app.info.engage_text : 'Do some Tasks!');
+
+            _set_footer(app);
         });
     }
 
@@ -49,6 +59,9 @@
         _load_app(function(app) {
             $('#task-presenter').html(app.info.task_presenter);
             $('.loading').hide();
+
+            _set_footer(app);
+
             // then we load load the task_id
             _load_task(global.task_id, function(task) {
                 taskLoaded(task.info);
