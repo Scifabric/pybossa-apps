@@ -22,7 +22,7 @@
     }
 
     function _solve_task(id, answer, callback) {
-        _load_app(id, function(task) {
+        _load_app(function(task) {
             $.ajax({
                 url: global.endpoint + '/api/taskrun',
                 type: 'POST',
