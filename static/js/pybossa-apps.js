@@ -26,13 +26,13 @@
             $.ajax({
                 url: global.endpoint + '/api/taskrun',
                 type: 'POST',
-                dataType: 'jsonp',
+                dataType: 'json',
                 contentType: 'application/json',
-                data: {
+                data: JSON.stringify({
                     app_id: task.app_id,
                     task_id: task.id,
                     info: answer
-                },
+                }),
                 success: function(data) {
                     callback(data);
                 },
