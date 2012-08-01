@@ -4,7 +4,6 @@
     function app() {
         $.ajax({
             url: global.endpoint + '/api/app?short_name=' + global.app_name,
-            dataType: 'jsonp',
             success: function(data) {
                 console.log(data);
             }
