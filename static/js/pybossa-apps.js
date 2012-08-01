@@ -4,7 +4,7 @@
     function _load_app(callback) {
         $.ajax({
             url: global.endpoint + '/api/app?short_name=' + global.app_name,
-            datatype: 'json',
+            dataType: 'json',
             success: function(data) {
                 callback(data[0]);
             }
@@ -14,9 +14,9 @@
     function _load_task(id, callback) {
         $.ajax({
             url: global.endpoint + '/api/task/' + id,
-            datatype: 'json',
-            success: function(task) {
-                callback(task);
+            dataType: 'json',
+            success: function(data) {
+                callback(data);
             }
         });
     }
