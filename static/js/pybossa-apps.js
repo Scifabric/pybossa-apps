@@ -22,7 +22,7 @@
     }
 
     function _solve_task(id, answer, callback) {
-        _load_app(function(task) {
+        _load_task(id, function(task) {
             var data = {
                 app_id: task.app_id,
                 task_id: task.id,
