@@ -1,4 +1,4 @@
-$def with (endpoint, app_name)
+$def with (endpoint, app_name, app_id)
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -42,6 +42,7 @@ $def with (endpoint, app_name)
       window.pybossa_apps = {
         endpoint: "$endpoint",
         app_name: "$app_name",
+        app_id: "$app_id",
         view: "newtask"
       };
 
