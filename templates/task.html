@@ -1,0 +1,48 @@
+$def with (endpoint, app_name, task_id)
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PyBossa - ...">
+    <meta name="author" content="">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Bootstrap styles -->
+    <link rel="stylesheet" href="$endpoint/static/vendor/bootstrap/2.0.4/bootstrap.min.css">
+    <link rel="stylesheet" href="$endpoint/static/vendor/bootstrap/2.0.4/bootstrap-responsive.min.css">
+    <!-- FontAwesome goodies -->
+    <link rel="stylesheet" href="$endpoint/static/vendor/fontawesome/css/font-awesome.css">
+
+    <!-- Le javascript -->
+    <script type="text/javascript" src="$endpoint/static/vendor/jquery.js"></script>
+    <script type="text/javascript" src="$endpoint/static/vendor/bootstrap/2.0.4/bootstrap.js"></script>
+ </head>
+
+  <body>
+
+    <div class="container" style="display:none; margin-top:30px">
+
+        <div style="text-align:center" class="loading"></div>
+        <div id="task-presenter"></div>
+
+    </div>
+    <script type="text/javascript">
+
+      window.pybossa_apps = {
+        endpoint: "$endpoint",
+        app_name: "$app_name",
+        view: "task",
+        task_id: "$task_id"
+      };
+
+    </script>
+    <script type="text/javascript" src="/static/js/pybossa-apps.js"></script>
+  </body>
+</html>
