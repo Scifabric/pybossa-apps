@@ -2,7 +2,11 @@
 
 .footer {
     margin-top: 30px;
-    border-top: 1px solid #eee;
     text-align: center;
     color: #999;
+}
+
+.footer span {
+    border-top: 1px solid #eee;
+    padding: 5px 30px;
 }
