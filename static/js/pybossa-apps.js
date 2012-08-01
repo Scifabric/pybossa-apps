@@ -4,6 +4,7 @@
     function _load_app(callback) {
         $.ajax({
             url: global.endpoint + '/api/app?short_name=' + global.app_name,
+            datatype: 'json',
             success: function(data) {
                 callback(data[0]);
             }
@@ -13,6 +14,7 @@
     function _load_task(id, callback) {
         $.ajax({
             url: global.endpoint + '/api/task/' + id,
+            datatype: 'json',
             success: function(task) {
                 callback(task);
             }
@@ -28,7 +30,7 @@
             $('.app-description').html(app.description);
             $('.app-long-description').html(app.long_description);
             $('.solve-tasks').attr('href', '/'+global.app_name+'/newtask');
-            $('.solve-tasks').html(app.info.engage_text ? app.info.engage_text : 'Do some Tasks!');
+            $('.solve-tasks').html(app.info && app.info.engage_text ? app.info.engage_text : 'Do some Tasks!');
         });
     }
 
