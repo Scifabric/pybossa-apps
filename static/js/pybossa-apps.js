@@ -24,7 +24,7 @@
     function _set_footer(app) {
         if (app.info.footer) {
             $('body').append('<div class="container footer"><div class="row">'+
-                '<div class="span12 content">'+app.info.footer+'</div>'+
+                '<div class="span12 content"><span>'+app.info.footer+'</span></div>'+
                 '</div></div>');
         }
     }
