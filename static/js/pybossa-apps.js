@@ -28,12 +28,11 @@
                 type: 'POST',
                 dataType: 'jsonp',
                 contentType: 'application/json',
-                processData: false,
-                data: JSON.stringify({
+                data: {
                     app_id: task.app_id,
                     task_id: task.id,
                     info: answer
-                }),
+                },
                 success: function(data) {
                     callback(data);
                 },
