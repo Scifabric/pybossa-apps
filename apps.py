@@ -23,7 +23,7 @@ def _get_app_id(app_name):
     global _pybossa_application_cache
     if app_name in _pybossa_application_cache:
         return _pybossa_application_cache[app_name].id
-    app = pbclient.find_app(short_name=app_name)
+    app = pbclient.find_app(short_name=app_name)[0]
     _pybossa_application_cache[app_name] = app
     return app.id
 
