@@ -46,10 +46,10 @@
         // at first we load the task presenter
         _load_app(function(app) {
             $('#task-presenter').html(app.info.task_presenter);
-
-            // then we load load the task
+            $('.loading').hide();
+            // then we load load the task_id
             _load_task(global.task_id, function(task) {
-                taskLoaded(task);
+                taskLoaded(task.info);
             });
         });
     }
