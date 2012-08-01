@@ -26,7 +26,7 @@
             $.ajax({
                 url: global.endpoint + '/api/taskrun',
                 type: 'POST',
-                dataType: 'json',
+                dataType: 'jsonp',
                 processData: false,
                 contentType: 'application/json',
                 data: {
@@ -38,7 +38,7 @@
                     callback(data);
                 },
                 error: function(a,b,c) {
-                    console.log('req error', a,b,c);
+                    console.warn('req error', a,b,c);
                 }
             });
         });
