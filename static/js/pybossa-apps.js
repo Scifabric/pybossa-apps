@@ -33,7 +33,7 @@
     }
 
     function newtask() {
-        pybossa.newTask(global.app_name).done( function( data ) {
+        pybossa.newTask(global.app_name, global.endpoint).done( function( data ) {
             if ( !$.isEmptyObject(data.task) ) {
                 window.location.pathname = '/'+global.app_name+'/task/' + data.task.id;
             } else {
