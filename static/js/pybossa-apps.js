@@ -27,6 +27,7 @@
                 url: global.endpoint + '/api/taskrun',
                 type: 'POST',
                 dataType: 'json',
+                processData: false,
                 contentType: 'application/json',
                 data: {
                     app_id: task.app_id,
@@ -35,6 +36,9 @@
                 },
                 success: function(data) {
                     callback(data);
+                },
+                error: function(a,b,c) {
+                    console.log('req error', a,b,c);
                 }
             });
         });
