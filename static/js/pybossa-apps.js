@@ -23,16 +23,18 @@
 
     function _solve_task(id, answer, callback) {
         _load_app(function(task) {
+            var data = {
+                app_id: task.app_id,
+                task_id: task.id,
+                info: answer
+            };
+            console.log('solve-task', task, data);
             $.ajax({
                 url: global.endpoint + '/api/taskrun',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
-                data: JSON.stringify({
-                    app_id: task.app_id,
-                    task_id: task.id,
-                    info: answer
-                }),
+                data: JSON.stringify(data),
                 success: function(data) {
                     callback(data);
                 },
