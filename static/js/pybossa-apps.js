@@ -78,10 +78,11 @@
             _set_footer(app);
         });
         if ($.cookie('remember_token')) {
-            $('a.login').attr('href', global.endpoint+'/account/profile');
-            $('a.login').html('<i class="icon-user"></i> '+$.cookie('remember_token').split('|')[0]);
+            $('a.login').attr('href', global.endpoint+'/account/signin?next='+location.href);
+            $('a.login').html(app.info && app.info.logout_text ? app.info.logout_text : 'Sign Out');
         } else {
             $('a.login').attr('href', global.endpoint+'/account/signin?next='+location.href);
+            $('a.login').html(app.info && app.info.login_text ? app.info.login_text : 'Sign In');
         }
     }
 
