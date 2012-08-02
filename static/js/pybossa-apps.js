@@ -77,7 +77,12 @@
 
             _set_footer(app);
         });
-        $('a.login').attr('href', global.endpoint+'/account/signin?next='+location.href);
+        if ($.cookie('remember_token')) {
+            $('a.login').attr('href', global.endpoint+'/account/profile');
+            $('a.login').html('<i class="icon-user"></i> '+$.cookie('remember_token').split('|')[0]);
+        } else {
+            $('a.login').attr('href', global.endpoint+'/account/signin?next='+location.href);
+        }
     }
 
     function newtask() {
