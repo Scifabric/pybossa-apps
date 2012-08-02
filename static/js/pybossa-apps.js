@@ -77,6 +77,7 @@
 
             _set_footer(app);
         });
+        $('a.login').attr('href', global.endpoint+'/account/signin?next='+location.href);
     }
 
     function newtask() {
