@@ -95,6 +95,8 @@
             $('#task-presenter').html(app.info.task_presenter);
             $('.loading').hide();
 
+            global.app_id = app.id;
+
             _set_footer(app);
 
             // then we load load the task_id
