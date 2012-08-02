@@ -28,7 +28,6 @@
                 task_id: task.id,
                 info: answer
             };
-            console.log('solve-task', task, data);
             $.ajax({
                 url: global.endpoint + '/api/taskrun',
                 type: 'POST',
@@ -42,6 +41,18 @@
                     console.warn('req error', a,b,c);
                 }
             });
+        });
+    }
+
+    function _load_next_task(callback) {
+        $.ajax({
+            url: global.endpoint + '/api/app/' + global.app_id + '/newtask',
+            type: 'GET',
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                callback(data);
+            }
         });
     }
 
@@ -69,9 +80,9 @@
     }
 
     function newtask() {
-        pybossa.newTask(global.app_name, global.endpoint).done( function( data ) {
-            if ( !$.isEmptyObject(data.task) ) {
-                window.location.pathname = '/'+global.app_name+'/task/' + data.task.id;
+        _load_next_task(function(task) {
+            if ( !$.isEmptyObject(task) ) {
+                window.location.pathname = '/'+global.app_name+'/task/' + task.id;
             } else {
                 $("#finish").fadeIn();
             }
@@ -104,4 +115,8 @@
         _solve_task(task_id, answer, callback);
     };
 
-} ( window.pybossa_apps, jQuery ));
+    global.nextTask = function(callback) {
+        newtask();
+    };
+
+} ( window.PyBossaApp, jQuery ));
