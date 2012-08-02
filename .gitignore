@@ -1,3 +1,5 @@
 fastcgi.*
 
 *.pyc
+
+.DS_Store
