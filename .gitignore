@@ -3,3 +3,5 @@ fastcgi.*
 *.pyc
 
 .DS_Store
+
+pbclient

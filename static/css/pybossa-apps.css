@@ -26,3 +26,49 @@
 .hero-unit h1 {
     margin-bottom: 10px;
 }
+
+.index h1 {
+    margin: 0 0 10px;
+    font-size: 36px;
+    text-align: center;
+}
+
+.loading {
+    text-align: center;
+    margin: 20px;
+}
+
+.loading:before {
+    content: url(../img/ajax-loader.gif);
+    padding-right: 5px;
+    position: relative;
+    top: 3px;
+}
+
+.index .apps {
+    margin: 30px 0 0;
+}
+
+.index .apps ul li {
+    text-align: center;
+    padding: 0 50px 20px;
+    color: #888;
+}
+
+.index .apps ul li a {
+    font-size: 24px;
+}
+
+.app-progress {
+    margin: 0 0 20px;
+    line-height: 24px;
+    text-align: center;
+}
+
+.app-progress .badge a {
+    color: #fff;
+}
+
+.center {
+    text-align: center;
+}
