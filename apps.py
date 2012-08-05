@@ -3,12 +3,14 @@
 import web
 import json
 import pbclient
+import requests
 
 endpoint = 'http://pybossa.vis4.net'  # no trailing slash
 pbclient.set('endpoint', endpoint)
 
 urls = (
   '/', 'app_overview',
+  '/api/taskrun', 'api_taskrun',
   '/([^\/]+)', 'app_index',
   '/([^\/]+)/newtask', 'app_newtask',
   '/([^\/]+)/progress', 'app_progress',
@@ -62,6 +64,8 @@ class app_progress_data:
         app = _get_app(app_name)
         taskruns = pbclient.get_taskruns(app.id, limit=3000)
         taskruns_by_id = {}
+        self.sdsd = ''
+
         for taskrun in taskruns:
             if taskrun.task_id not in taskruns_by_id:
                 taskruns_by_id[taskrun.task_id] = 0
@@ -84,6 +88,22 @@ class app_progress_data:
             'taskruns_finished': taskruns_finished
         }
         return json.dumps(result)
+
+
+class api_taskrun:
+
+    def POST(self):
+        data = web.data()
+        try:
+            cookies = web.cookies()
+            r = requests.post(endpoint + '/api/taskrun', cookies=cookies, data=data)
+            if r.status == 200:
+                return r.text
+            else:
+                app.internalerror()
+        except:
+            app.internalerror()
+
 
 if __name__ == "__main__":
     app.run()
