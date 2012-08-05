@@ -39,7 +39,7 @@
                 info: answer
             };
             $.ajax({
-                url: global.endpoint + '/api/taskrun',
+                url: '/api/taskrun',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
