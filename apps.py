@@ -98,13 +98,14 @@ class api:
             if 'remember_token' in cookies:
                 headers = {'content-type': 'application/json'}
                 r = requests.post(endpoint + '/api/' + url, cookies=cookies, headers=headers)
-                if r.status == 200:
+                if r.status_code == 200:
                     return r.text
                 else:
-                    app.internalerror()
+                    return 'Error: ' + str(r.status_code)
             else:
                 app.internalerror()
-        except:
+        except Exception, e:
+            return str(e)
             app.internalerror()
 
     def POST(self, url):
