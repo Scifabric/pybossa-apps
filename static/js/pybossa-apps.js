@@ -154,6 +154,10 @@
                 setTimeout(function() {
                     $('.progress .bar').width((100 * progress) +'%');
                 }, 700);
+                $('.progress .bar').html('<span style="display:none">'+Math.round(100*progress) + '%</span>');
+                setTimeout(function() {
+                    $('.progress .bar span').fadeIn(1000);
+                }, 1500);
 
                 setTimeout(function() {
                     var t = 10, vel = 100, acc = 0.96, i = 0, dur = 3000;
