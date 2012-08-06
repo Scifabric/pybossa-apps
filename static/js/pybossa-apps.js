@@ -92,6 +92,21 @@
         });
     }
 
+    function _get_current_task_id(url) {
+        var pathArray = url.split('/');
+        if (url.indexOf('/task/')!=-1) {
+            var l = pathArray.length;
+            var i = 0;
+            for (i=0;i<l;i++) {
+                if (pathArray[i]=='task') {
+                    return pathArray[i+1];
+                }
+            }
+        }
+        return false;
+     }
+
+
     /*
      * entry points
      */
@@ -230,8 +245,13 @@
     });
 
     /* public api */
-    global.saveTask = function(task_id, answer, callback) {
-        _solve_task(task_id, answer, callback);
+    global.saveTask = function(answer, callback) {
+        var task_id = _get_current_task_id(window.location.pathname);
+        if (task_id) {
+            _solve_task(task_id, answer, callback);
+        } else {
+            throw 'Cannot find task id';
+        }
     };
 
     global.nextTask = function(callback) {
