@@ -121,6 +121,7 @@
                 $('.app-long-description').html(app.long_description);
                 $('.solve-tasks').attr('href', '/'+global.app_name+'/newtask');
                 $('.solve-tasks').html(app.info && app.info.engage_text ? app.info.engage_text : 'Do some Tasks!');
+                $('.see-progress').html(app.info && app.info.progress_text ? app.info.progress_text : 'See current progress');
 
                 _set_footer(app);
 
