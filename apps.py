@@ -92,6 +92,21 @@ class app_progress_data:
 
 class api:
     """ Cross-domain proxy to forward authenticated requests """
+    def GET(self, url):
+        try:
+            cookies = web.cookies()
+            if 'remember_token' in cookies:
+                headers = {'content-type': 'application/json'}
+                r = requests.post(endpoint + '/api/' + url, cookies=cookies, headers=headers)
+                if r.status == 200:
+                    return r.text
+                else:
+                    app.internalerror()
+            else:
+                app.internalerror()
+        except:
+            app.internalerror()
+
     def POST(self, url):
         data = web.data()
         try:
