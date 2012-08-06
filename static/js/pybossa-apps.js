@@ -1,9 +1,17 @@
 
 (function(global, $) {
 
+    function _endpoint() {
+        if ($.cookie('remember_token')) {
+            return '';  // use cross-domain proxy for signed requests
+        } else {
+            return global.endpoint;  // access api directly for guest requests
+        }
+    }
+
     function _load_app(callback) {
         $.ajax({
-            url: global.endpoint + '/api/app?short_name=' + global.app_name,
+            url: _endpoint() + '/api/app?short_name=' + global.app_name,
             dataType: 'json',
             success: function(data) {
                 callback(data[0]);
@@ -13,7 +21,7 @@
 
     function _load_apps(callback) {
         $.ajax({
-            url: global.endpoint + '/api/app',
+            url: _endpoint() + '/api/app',
             dataType: 'json',
             success: function(data) {
                 callback(data);
@@ -23,7 +31,7 @@
 
     function _load_task(id, callback) {
         $.ajax({
-            url: global.endpoint + '/api/task/' + id,
+            url: _endpoint() + '/api/task/' + id,
             dataType: 'json',
             success: function(data) {
                 callback(data);
@@ -39,7 +47,7 @@
                 info: answer
             };
             $.ajax({
-                url: '/api/taskrun',
+                url: _endpoint() + '/api/taskrun',
                 type: 'POST',
                 dataType: 'json',
                 contentType: 'application/json',
@@ -56,7 +64,7 @@
 
     function _load_next_task(callback) {
         $.ajax({
-            url: global.endpoint + '/api/app/' + global.app_id + '/newtask',
+            url: _endpoint() + '/api/app/' + global.app_id + '/newtask',
             type: 'GET',
             dataType: 'json',
             success: function(data) {

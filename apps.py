@@ -10,8 +10,8 @@ pbclient.set('endpoint', endpoint)
 
 urls = (
   '/', 'app_overview',
-  '/api/taskrun', 'api_taskrun',
-  '/([^\/]+)', 'app_index',
+  '/api/(.+)', 'api',
+  '/([^\/]+)/?', 'app_index',
   '/([^\/]+)/newtask', 'app_newtask',
   '/([^\/]+)/progress', 'app_progress',
   '/([^\/]+)/progress/data', 'app_progress_data',
@@ -90,15 +90,18 @@ class app_progress_data:
         return json.dumps(result)
 
 
-class api_taskrun:
-
-    def POST(self):
+class api:
+    """ Cross-domain proxy to forward authenticated requests """
+    def POST(self, url):
         data = web.data()
         try:
             cookies = web.cookies()
-            r = requests.post(endpoint + '/api/taskrun', cookies=cookies, data=data)
-            if r.status == 200:
-                return r.text
+            if 'remember_token' in cookies:
+                r = requests.post(endpoint + '/api/' + url, cookies=cookies, data=data)
+                if r.status == 200:
+                    return r.text
+                else:
+                    app.internalerror()
             else:
                 app.internalerror()
         except:
