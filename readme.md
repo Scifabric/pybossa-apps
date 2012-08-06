@@ -37,7 +37,7 @@ SESSION_COOKIE_DOMAIN = '.example.com'
 
 ## Updating your task presenters
 
-The PyBossa Apps framework allows you to simplify the logic of your task presenters. Here's an example of a very simple task presenter:
+The PyBossa Apps framework allows you to simplify the logic of your task presenters. Here's a simple example:
 
 ```HTML
 <h1>My PyBossa App</h1>
@@ -51,8 +51,8 @@ The PyBossa Apps framework allows you to simplify the logic of your task present
 <div class="task" style="display:none">
     <div class="task-info"></div>
     <p>Do you see a human on this image?</p>
-    <button class="btn" onclick="submitTask('yes')">yes</button>
-    <button class="btn" onclick="submitTask('no')">no</button>
+    <button onclick="submitTask('yes')">yes</button>
+    <button onclick="submitTask('no')">no</button>
     <div class="status"></div>
 </div>
 
