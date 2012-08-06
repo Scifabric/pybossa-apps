@@ -35,7 +35,7 @@ REMEMBER_COOKIE_DOMAIN = '.example.com'
 SESSION_COOKIE_DOMAIN = '.example.com'
 ```
 
-## Updating your task presenters
+## Update your task presenters
 
 The PyBossa Apps framework allows you to simplify the logic of your task presenters. Here's a simple example:
 
