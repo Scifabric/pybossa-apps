@@ -96,8 +96,7 @@ class api:
         try:
             cookies = web.cookies()
             if 'remember_token' in cookies:
-                headers = {'content-type': 'application/json'}
-                r = requests.post(endpoint + '/api/' + url, cookies=cookies, headers=headers)
+                r = requests.post(endpoint + '/api/' + url, cookies=cookies)
                 if r.status_code == 200:
                     return r.text
                 else:
