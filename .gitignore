@@ -5,3 +5,5 @@ fastcgi.*
 .DS_Store
 
 pbclient
+
+settings.py
