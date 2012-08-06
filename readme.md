@@ -74,7 +74,7 @@ function submitTask(answer) {
     $('.status').html('Your answer will be submitted now.');
 
     // submit task
-    PyBossaApp.saveTask(taskid, answer, function(data) {
+    PyBossaApp.saveTask(answer, function(data) {
         // show that the next task will be loaded
         $('.status').html('Your answer has been submitted. Loading next task now.');
 
