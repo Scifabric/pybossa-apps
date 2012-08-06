@@ -5,6 +5,8 @@ import json
 import pbclient
 import requests
 
+web.config.debug = True
+
 endpoint = 'http://pybossa.vis4.net'  # no trailing slash
 pbclient.set('endpoint', endpoint)
 
@@ -93,35 +95,28 @@ class app_progress_data:
 class api:
     """ Cross-domain proxy to forward authenticated requests """
     def GET(self, url):
-        params = web.input()
-        try:
-            cookies = web.cookies()
-            if 'remember_token' in cookies:
-                r = requests.get(endpoint + '/api/' + url, cookies=cookies, data=params)
-                if r.status_code == 200:
-                    return r.text
-                else:
-                    return 'Error: ' + str(r.status_code)
-            else:
-                app.internalerror()
-        except Exception, e:
-            return str(e)
-            app.internalerror()
+        data = web.input()
+        params = dict()
+        for k in data:
+            params[k] = data[k]
+        cookies = web.cookies()
+        r = requests.get(endpoint + '/api/' + url, cookies=cookies, params=params)
+        if r.status_code == 200:
+            return r.text
+        else:
+            return 'Error: ' + str(r.status_code)
 
     def POST(self, url):
         data = web.data()
-        try:
-            cookies = web.cookies()
-            if 'remember_token' in cookies:
-                headers = {'content-type': 'application/json'}
-                r = requests.post(endpoint + '/api/' + url, cookies=cookies, data=data, headers=headers)
-                if r.status_code == 200:
-                    return r.text
-                else:
-                    app.internalerror()
+        cookies = web.cookies()
+        if 'remember_token' in cookies:
+            headers = {'content-type': 'application/json'}
+            r = requests.post(endpoint + '/api/' + url, cookies=cookies, data=data, headers=headers)
+            if r.status_code == 200:
+                return r.text
             else:
                 app.internalerror()
-        except:
+        else:
             app.internalerror()
 
 
