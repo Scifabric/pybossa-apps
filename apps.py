@@ -4,11 +4,11 @@ import web
 import json
 import pbclient
 import requests
+import settings
 
-web.config.debug = True
+web.config.debug = settings.DEBUG
 
-endpoint = 'http://pybossa.vis4.net'  # no trailing slash
-pbclient.set('endpoint', endpoint)
+pbclient.set('endpoint', settings.ENDPOINT)
 
 urls = (
   '/', 'app_overview',
@@ -37,28 +37,28 @@ def _get_app(app_name):
 
 class app_overview:
     def GET(self):
-        return render.index(endpoint)
+        return render.index(settings.ENDPOINT)
 
 
 class app_index:
     def GET(self, app_name):
-        return render.app(endpoint, app_name)
+        return render.app(settings.ENDPOINT, app_name)
 
 
 class app_newtask:
     def GET(self, app_name):
-        return render.newtask(endpoint, app_name, _get_app(app_name).id)
+        return render.newtask(settings.ENDPOINT, app_name, _get_app(app_name).id)
 
 
 class app_task:
     def GET(self, app_name, task_id):
-        return render.task(endpoint, app_name, task_id)
+        return render.task(settings.ENDPOINT, app_name, task_id)
 
 
 class app_progress:
     def GET(self, app_name):
         app = _get_app(app_name)
-        return render.progress(endpoint, app_name, app.name)
+        return render.progress(settings.ENDPOINT, app_name, app.name)
 
 
 class app_progress_data:
@@ -100,7 +100,7 @@ class api:
         for k in data:
             params[k] = data[k]
         cookies = web.cookies()
-        r = requests.get(endpoint + '/api/' + url, cookies=cookies, params=params)
+        r = requests.get(settings.ENDPOINT + '/api/' + url, cookies=cookies, params=params)
         if r.status_code == 200:
             return r.text
         else:
@@ -111,7 +111,7 @@ class api:
         cookies = web.cookies()
         if 'remember_token' in cookies:
             headers = {'content-type': 'application/json'}
-            r = requests.post(endpoint + '/api/' + url, cookies=cookies, data=data, headers=headers)
+            r = requests.post(settings.ENDPOINT + '/api/' + url, cookies=cookies, data=data, headers=headers)
             if r.status_code == 200:
                 return r.text
             else:
