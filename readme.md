@@ -18,7 +18,7 @@ Copy the ``default_settings.py`` to ``settings.py`` and edit it to set the url o
 > cp default_settings.py settings.py
 ```
 
-Run PyBossa apps locally to test installation:
+Run PyBossa Apps locally to test installation:
 
 ```sh
 > python apps.py
@@ -27,7 +27,7 @@ http://0.0.0.0:8080/
 
 ## Setup with Authentication
 
-If you want to use PyBossa Apps with authentication you need to deploy it on a sub-domain of your PyBossa instance. To make the PyBossa session cookies accessible from subdomains you need to add the following to the ``settings_local.py`` of **your PyBossa instance** (and not PyBossa Apps). Replace example.com with your domain and don't forget the leading dot.
+If you want to use PyBossa Apps with user authentication you need to deploy it on a sub-domain of your PyBossa instance. To make the PyBossa session cookies accessible from subdomains you need to add the following to the ``settings_local.py`` of **your PyBossa instance** (and not PyBossa Apps). Replace example.com with your domain and don't forget the leading dot.
 
 ```Python
 # allow subdomains to access the auth cookie
