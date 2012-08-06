@@ -121,17 +121,19 @@
                 $('.app-long-description').html(app.long_description);
                 $('.solve-tasks').attr('href', '/'+global.app_name+'/newtask');
                 $('.solve-tasks').html(app.info && app.info.engage_text ? app.info.engage_text : 'Do some Tasks!');
-                $('.see-progress').html(app.info && app.info.progress_text ? app.info.progress_text : 'See current progress');
+                $('.see-progress span').html(app.info && app.info.progress_text ? app.info.progress_text : 'See current progress');
 
                 _set_footer(app);
 
                 if ($.cookie('remember_token')) {
                     $('a.login').attr('href', global.endpoint+'/account/signout?next='+location.href);
-                    $('a.login').html(app.info && app.info.logout_text ? app.info.logout_text : 'Sign Out');
+                    $('a.login span').html(app.info && app.info.logout_text ? app.info.logout_text : 'Sign Out');
                 } else {
                     $('a.login').attr('href', global.endpoint+'/account/signin?next='+location.href);
-                    $('a.login').html(app.info && app.info.login_text ? app.info.login_text : 'Sign In');
+                    $('a.login span').html(app.info && app.info.login_text ? app.info.login_text : 'Sign In');
                 }
+
+                document.title = app.name;
             });
         },
 
