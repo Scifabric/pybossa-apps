@@ -5,7 +5,7 @@ Light-weight framework for developing PyBossa apps outside of PyBossa.
 
 ## Setup
 
-PyBossa Apps is a Python-based web application that uses the [web.py](http://webpy.org) framework.
+PyBossa Apps is a Python-based web application that uses the [web.py](http://webpy.org) framework. Depends on [pybossa-client](https://github.com/PyBossa/pybossa-client).
 
 ```sh
 > git clone https://github.com/pybossa/pybossa-apps.git
